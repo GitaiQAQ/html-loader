@@ -52,7 +52,7 @@ module.exports = function(content) {
 	var data = {};
 	content = [content];
 	links.forEach(function(link) {
-		if(!loaderUtils.isUrlRequest(link.value, root)) return;
+		// if(!loaderUtils.isUrlRequest(link.value, root)) return;
 
 		if (link.value.indexOf('mailto:') > -1 ) return;
 
@@ -152,6 +152,8 @@ module.exports = function(content) {
 
 		if (config.interpolate === 'require') {
 			urlToRequest = data[match];
+		} else if (!/^(?:\w+:)?\/\/(\S+)$/.test(data[match]) {
+		        urlToRequest = data[match];
 		} else {
 			urlToRequest = loaderUtils.urlToRequest(data[match], root);
 		}
